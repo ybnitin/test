@@ -1,0 +1,13 @@
+Dropdown type field was populated with data in the Escalations section
+    [Arguments]     ${field_name}       ${field_value}
+    Scroll Down Until The Page Contains Element    //label[normalize-space(text())="${field_name}"]
+#    Wait Until Page Contains Element   //label[normalize-space(text())="${field_name}"]        60s
+    Wait Until Keyword Succeeds    10x    3s    SeleniumLibrary.Scroll Element Into View    //label[normalize-space(text())="${field_name}"]/..//input
+    ${sel_dropdown}       Get WebElement    //label[normalize-space(text())="${field_name}"]/..//input
+    Wait Until Keyword Succeeds    10x    3s        Execute Javascript      arguments[0].click();       ARGUMENTS       ${sel_dropdown}
+    Sleep    2s
+    ${sel_dropdown_value}       Get WebElement        //label[normalize-space(text())="${field_name}"]/..//li//span[text()="${field_value}"]
+    Wait Until Keyword Succeeds    20x    3s        Execute Javascript      arguments[0].click();       ARGUMENTS       ${sel_dropdown_value}
+#    Press Keys      NONE        ARROW_UP
+#    Press Keys      NONE        ARROW_UP
+    Sleep       2s
